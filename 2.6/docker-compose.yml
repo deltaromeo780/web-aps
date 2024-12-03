@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgresdb  # dowlona nazwa
+    networks:
+      - doc_network       # dowlona nazwa
+
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: admin
+      POSTGRES_DB: my_database
+    volumes:
+      - home:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin     # dowlona nazwa
+    networks:
+      - doc_network     # dowlona nazwa
+
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+
+volumes:
+  home: # dowlona nazwa
+
+networks:
+  doc_network:
+    driver: bridge
