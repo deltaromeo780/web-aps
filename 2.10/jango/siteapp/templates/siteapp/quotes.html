@@ -1,0 +1,25 @@
+{% extends "siteapp/base.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-8">
+
+    {% for quote in quotes %}
+
+    <div class="quote" itemscope itemtype="http://schema.org/CreativeWork">
+        <span class="text" itemprop="text">{{quote.quote}}</span>
+        <span>by <small class="author" itemprop="author">{{quote.author.fullname}}</small>
+        <a href="/author/{{quote.author.fullname}}">(about)</a>
+        </span>
+
+    </div>
+    {% endfor %}
+
+
+    </div>
+
+</div>
+
+{% endblock %}
